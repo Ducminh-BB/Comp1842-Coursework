@@ -34,7 +34,7 @@ mongoose.connect(MONGO_URI)
 .then(() => {
     // listen for request
     app.listen(PORT, () => {
-    console.log('connected to db & server is running at http://localhost:' + PORT)
+    console.log('connected to db & server is running at https://comp1842-coursework.onrender.com')
 })
 })
 .catch((err) => {
