@@ -262,7 +262,7 @@ const Home = () => {
                                 <img src="/vocab-books.jpg" className="img-fluid mb-4" alt="" />
                             </div>
                             <div className="col-md-7 d-flex align-items-center flex-column aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                                <h1>Explore <CountUp delay={2} duration={10} className="counter text-info" end={1000} />+ vocabularies</h1>
+                                <h1>Explore <CountUp duration={10} className="counter text-info" end={1000} />+ vocabularies</h1>
                                 <p className="fw-light">
                                     Help you strengthen your knowledge.
                                 </p>
