@@ -8,7 +8,7 @@ function Footer() {
   const { account } = useAuthContext()
 
   return (
-    <footer id="footer" className="footer position-relative dark-background">
+    <footer id="footer" className="footer position-relative dark-background fixed-bottom">
 
     <div className="container footer-top">
       <div className="row gy-3">
