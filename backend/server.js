@@ -9,6 +9,8 @@ const leaderboardRouter = require('./routes/leaderboardRoute')
 const testVocabRouter = require('./routes/testVocabRoute')
 
 const app = express()
+const PORT = process.env.PORT || 3001
+const MONGO_URI = process.env.MONGO_URI
 
 // set up middlewares
 
@@ -28,11 +30,11 @@ accountRouter(app)
 leaderboardRouter(app)
 testVocabRouter(app)
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(MONGO_URI)
 .then(() => {
     // listen for request
-    app.listen(process.env.PORT || 3001, () => {
-    console.log('connected to db & server is running at http://localhost:' + (process.env.PORT || 3001))
+    app.listen(PORT, () => {
+    console.log('connected to db & server is running at http://localhost:' + PORT)
 })
 })
 .catch((err) => {
