@@ -1,0 +1,111 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.signup {
+    width: 420px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 20px 30px ;
+    
+}
+
+.signup h3 {
+    color: var(--bs-dark);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.signup .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 20px 0;
+}
+
+.signup .input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: 2px solid #333;
+    border-radius: 30px;
+    font-size: 18px;
+    padding: 20px;
+}
+
+.signup .input-box .toggle-password {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    user-select: none;
+    padding: 0 8px;
+}
+
+.signup .input-box .toggle-password:hover {
+    cursor: pointer;
+}
+
+.signup .input-box input::placeholder {
+    color: #746767;
+}
+
+.signup .input-box .input-glow {
+    border-color: var(--bs-danger);
+    
+}
+
+.signup .input-box input#password, .input-box input#confirm-password {
+    padding-right: 52px;
+}
+
+.signup .submit-btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.submit-btn button {
+    width: 30%;
+    height: 40px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.signup .login-link {
+    font-size: 0.95rem;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-link a {
+    font-weight: 600;
+}
+
+.signup .error {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    font-size: 12px;
+    user-select: none;
+}
+
+.signup .success {
+    font-size: 0.95rem;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+.signup .success a {
+    color: var(--bs-primary);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0 3px;
+}

@@ -1,0 +1,135 @@
+.leaderboard-container {
+    margin-top: 100px;
+}
+
+.leaderboard-container .category {
+    grid-column-gap: 48px;
+    grid-row-gap: 48px;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+    margin-bottom: 80px;
+}
+
+.category .color-item {
+    width: 200px; 
+    height: 50px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: var(--bs-secondary);
+    color: var(--bs-info);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.category .eng-ger:hover {
+    background-color: #FFD700;
+    color: var(--bs-white);
+    cursor: pointer;
+}
+
+.category .ger-eng:hover {
+    background-color: #4CAF50;
+    color: var(--bs-white);
+    cursor: pointer;
+}
+
+.category .vi-eng:hover {
+    background-color: #1E90FF;
+    color: var(--bs-white);
+    cursor: pointer;
+}
+
+.active.eng-ger {
+    background-color: #FFD700;
+    color: var(--bs-white);
+  }
+  
+.active.ger-eng {
+    background-color: #4CAF50;
+    color: var(--bs-white);
+}
+
+.active.vi-eng {
+    background-color: #1E90FF;
+    color: var(--bs-white);
+}
+
+.leaderboard-container .top-three-rank {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    user-select: none;
+}
+
+.top-three-rank .top-item 
+{
+    width: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-left: 4px;
+}
+
+.top-item.top-1 {
+    background-color: rgb(242, 229, 47);
+    border: 2px solid var(--bs-warning);
+    font-size: 4em;
+    order: 2; 
+}
+
+.top-item.top-2 {
+    background-color: rgb(15, 182, 224);
+    border: 2px solid var(--bs-cyan);
+    font-size: 3em;
+    order: 1; 
+}
+
+.top-item.top-3 {
+    background-color: silver;
+    border: 2px solid var(--bs-gray-400);
+    font-size: 2em;
+    order: 3; 
+}
+
+.banner-1, .banner-2, .banner-3 {
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.banner-1 {
+    font-size: 4em;
+}
+
+.banner-2 {
+    font-size: 3em;
+}
+
+.banner-3 {
+    font-size: 2.5em;
+}
+
+.top-three-rank .email {
+    font-size: 2.2rem;
+    color: var(--dark);
+}
+
+.top-three-rank .info {
+    font-size: 1rem;
+}
+
+.table-responsive {
+    user-select: none;
+}
+
+.leaderboard-container .highlight {
+    color: var(--bs-warning);
+}

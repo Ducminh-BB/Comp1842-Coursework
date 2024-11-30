@@ -1,0 +1,183 @@
+.login-required {
+    margin: 100px 0;
+}
+
+* {
+    --uk-flag-image: url('https://r4.wallpaperflare.com/wallpaper/684/148/21/flag-uk-union-jack-wallpaper-6990b8bdd16a3d3bd6a788df60c1064d.jpg');
+    --ger-flag-image: url('https://r4.wallpaperflare.com/wallpaper/949/596/1022/flag-germany-wallpaper-89d0f87d918aad2b66a7785fa0c1067d.jpg');
+    --vi-flag-image: url('https://r4.wallpaperflare.com/wallpaper/988/71/764/flag-vietnam-wallpaper-395068ed819a7d1bd6d708af60f1a6dd.jpg');
+}
+
+.do-test .select-test {
+    grid-column-gap: 80px;
+    grid-row-gap: 80px;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 1056px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 100px;
+    padding-bottom: 140px;
+    display: flex;
+}
+
+.do-test .test-options {
+    grid-column-gap: 48px;
+    grid-row-gap: 48px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.test-item {
+    width: 200px; 
+    height: 100px; 
+    display: flex;
+    aspect-ratio: 2 / 1;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    overflow: hidden;
+}
+
+.test-item div {
+    flex: 1;
+}
+
+.test-item .img-left {
+    background: var(--uk-flag-image) no-repeat center center;
+    background-size: cover;
+}
+.test-item .img-right {
+    background: var(--ger-flag-image) no-repeat center center;
+    background-size: cover;
+}
+
+.test-item .img-left-vi {
+    background: var(--vi-flag-image) no-repeat center center;
+    background-size: cover;
+}
+
+.test-item:hover {
+    transform: scale(1.2);
+}
+
+.caption {
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    opacity: 0; 
+    transition: opacity 0.3s ease; 
+  }
+
+.test-item:hover + .caption {
+    opacity: 1; /* Show caption when hovering over the box */
+}
+
+
+.do-test, .tests-container {
+    margin-top: 100px;
+}
+
+.do-test p span {
+    color: var(--bs-primary);
+}
+
+.do-test p span:hover {
+    cursor: pointer;    
+    font-weight: bold;
+}
+
+.do-test .ans-btn {
+  background: #333;
+  border-radius: 999px;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  padding: 8px 18px;
+  border: 0;
+}
+
+.form-control:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+}
+
+.box-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    animation: fade-in-out .6s ease-in-out forwards;
+}
+
+/* fade-in-out effect */
+
+@keyframes fade-in-out {
+    0% {
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+/* blink effect */
+
+@keyframes health-blink {
+    0% {
+        opacity: 1;
+        color: var(--bs-danger);
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        color: var(--bs-danger);
+    }
+}
+
+@-webkit-keyframes health-blink {
+    0% {
+        opacity: 1;
+        color: var(--bs-danger);
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+        color: var(--bs-danger);
+    }
+}
+
+.blinking-health {
+    animation: health-blink 1s infinite;
+    -webkit-animation: health-blink 1s infinite;
+}
+
+

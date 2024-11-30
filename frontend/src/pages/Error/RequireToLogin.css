@@ -1,0 +1,8 @@
+.login-required {
+    user-select: none;
+}
+
+.login-required h1 {
+    color: var(--bs-danger);
+    font-size: 10rem;
+}

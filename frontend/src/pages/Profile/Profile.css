@@ -1,0 +1,24 @@
+.profile, .err-profile, .edit-profile-container {
+    margin: 100px 0;
+}
+
+.profile {
+    justify-self: center;
+}
+
+.profile .card {
+    padding: 1.5em .5em .5em;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.profile .card-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.profile .delete:hover {
+    cursor: pointer;
+    color: rgb(221, 30, 30);
+    text-decoration: underline;
+}

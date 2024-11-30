@@ -1,0 +1,15 @@
+.tests-container .view-test:hover {
+    cursor: pointer;
+}
+
+.tests-container .delete-test:hover {
+    cursor: pointer;
+    color: rgb(221, 30, 30);
+    text-decoration: underline;
+}
+
+
+.tests-container .view-all:hover {
+    cursor: pointer;
+    font-weight: 600;
+}

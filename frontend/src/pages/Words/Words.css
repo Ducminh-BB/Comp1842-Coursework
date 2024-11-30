@@ -1,0 +1,36 @@
+.words-container {
+    margin: 100px 20px;
+}
+
+.actions {
+    display: flex;
+    gap: 20px;
+}
+
+.actions .delete:hover {
+    cursor: pointer;
+    color: rgb(221, 30, 30);
+    text-decoration: underline;
+}
+
+
+.words-container .search {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+  
+.words-container .search-box {
+    width: 100%;
+    border: 3px solid #00B4CC;
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    color: var(--primary);
+}
+.words-container .wrap{
+    width: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
