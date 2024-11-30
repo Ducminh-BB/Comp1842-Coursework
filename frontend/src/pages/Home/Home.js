@@ -113,9 +113,11 @@ const Home = () => {
 
     return (
         // admin dashboard
-        (acc && tests && account && account.role === 'admin')
+        (account && account.role === 'admin')
         ?(
-            <div className='statistic-container'>
+            (acc && tests) 
+            ? (
+                <div className='statistic-container'>
                 <div className='container'>
                     <div className='row'>
                         <div className='col'>
@@ -231,6 +233,11 @@ const Home = () => {
                 </div>
                 
             </div>
+            )
+            :(
+                <div>loading...</div>
+            )
+            
         )
         :(
             <main data-aos-easing='ease-in-out' data-aos-duration="600" data-aos-delay="0" className={scrolling ? 'scrolled' : ''}>
