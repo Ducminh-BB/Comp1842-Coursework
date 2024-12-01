@@ -191,7 +191,7 @@ const DoTest = () => {
     }
 
     useEffect(() => {
-        if (duplVocabs.length === SHUFFLE_VOCABS)
+        if (duplVocabs && duplVocabs.length === SHUFFLE_VOCABS)
         {
             setDuplVocabs(vocabs)
         }
@@ -358,13 +358,13 @@ const DoTest = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        if (attempts - 1 === 0) {
+        await checkAnswerResult()
+
+        if (attempts === 0) {
             completeTest()
             return
         }
 
-        await checkAnswerResult()
-        
     }
 
     const startTest = (t) => {
