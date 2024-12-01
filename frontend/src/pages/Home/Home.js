@@ -189,7 +189,8 @@ const Home = () => {
                                                     if (handleConfirmation('Are you sure to upgrade the role for this account ?'))
                                                     {                       
                                                         try {
-                                                            handleUpdateRole(a.email, 'admin')
+                                                            handleUpdateRole(a.email, 'admin', account.token)
+                                                            alert('Upgrade the role successfully')
                                                         } catch (error) {
                                                             alert('Something error preventing to update the role of this account')
                                                         }
@@ -200,7 +201,8 @@ const Home = () => {
                                                     if (handleConfirmation('Are you sure to downgrade the role for this account ?'))
                                                     {                       
                                                         try {
-                                                            handleUpdateRole(a.email, 'client')
+                                                            handleUpdateRole(a.email, 'client', account.token)
+                                                            alert('Downgrade the role successfully')
                                                         } catch (error) {
                                                             alert('Something error preventing to update the role of this account')
                                                         }
