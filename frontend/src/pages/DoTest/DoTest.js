@@ -114,21 +114,22 @@ const DoTest = () => {
 
     useEffect(() => {
 
-        const fetchData = async () => {
-            await fetchVocabs(dispatch)
-            await fetchLeaderboard(ldDispatch, account.token)
-        }
-
         try {
-            fetchData()
-            setDuplVocabs(vocabs)
+            fetchVocabs(dispatch)
+            fetchLeaderboard(ldDispatch, account.token)
         }
         catch (err)
         {
             console.error("can't fatch data")
         }
+        
 
     }, [dispatch, ldDispatch])
+
+    useEffect(() => {
+        if (vocabs)
+            setDuplVocabs(vocabs)
+    }, [vocabs])
 
     const pushDataToLd = async () => {
         // check the user existing in db
@@ -189,18 +190,6 @@ const DoTest = () => {
           </div>
         )
     }
-
-    useEffect(() => {
-        if (duplVocabs && duplVocabs.length === SHUFFLE_VOCABS)
-        {
-            setDuplVocabs(vocabs)
-        }
-        if (test)
-        {
-            let randVocab = getRandomVocab(duplVocabs, test)
-            vocabRef.current = randVocab
-        }
-    }, [test, changeQuestionFlag])
 
     useEffect(() => {
 
@@ -428,6 +417,22 @@ const DoTest = () => {
         }        
 
     }, [testStarted])
+
+    useEffect(() => {
+        if (duplVocabs)
+        {
+            if (test)
+            {
+                let randVocab = getRandomVocab(duplVocabs, test)
+                vocabRef.current = randVocab
+            }
+            if (duplVocabs.length === SHUFFLE_VOCABS)
+            {
+                setDuplVocabs(vocabs)
+            }
+        }
+        
+    }, [test, changeQuestionFlag])
 
     return (
         (account)
