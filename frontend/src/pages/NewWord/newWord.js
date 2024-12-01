@@ -64,7 +64,7 @@ const CreateNewWords = () => {
                             alt="Germany" className="flag-icon" />
                         </span>
                         <input className='form-control' type='text' onChange={handleChange} placeholder="German"
-                        name='english' value={formData.german} required />
+                        name='german' value={formData.german} required />
                     </div>
                     <div className='input-group w-100'>
                         <span className="input-group-text">
@@ -74,7 +74,7 @@ const CreateNewWords = () => {
                             alt="Vietnam" className="flag-icon" />
                         </span>
                         <input className='form-control' type='text' onChange={handleChange} placeholder="Vietnamese"
-                        name='english' value={formData.vietnamese} required />
+                        name='vietnamese' value={formData.vietnamese} required />
                     </div>
 
                     <button className='btn-fabulous'>Add</button>

@@ -3,7 +3,6 @@ import { useVocabsContext } from '../../hooks/useVocabContext'
 import { handleUpdate } from '../../handleAPI/Vocabs/vocabsAPI'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../../hooks/useAuthContext'
-import './WordUpdate.css'
 
 const UpdateWordForm = () => {
 
@@ -45,23 +44,46 @@ const UpdateWordForm = () => {
     }
 
     return (
-        <form className="update-form" onSubmit={handleSubmit}>
-            <h3>Update A Word</h3>
+        <div className='container wrapper'>
+            <div className='form-container'>
+                <h1 className='mb-4 text-center'>Update A Word</h1>
+                <form className="d-flex flex-column align-items-center" onSubmit={handleSubmit}>
+                    <div className='input-group w-100'>
+                        <span className="input-group-text">
+                        <img
+                            src="https://flagcdn.com/gb.svg"
+                            width="30"
+                            alt="United Kingdom" className="flag-icon" />
+                        </span>
+                        <input className='form-control' type='text' onChange={handleChange} placeholder="English"
+                        name='english' value={formData.english} required />
+                    </div>
+                    <div className='input-group w-100'>
+                        <span className="input-group-text">
+                        <img
+                            src="https://flagcdn.com/w40/de.png"
+                            width="30"
+                            alt="Germany" className="flag-icon" />
+                        </span>
+                        <input className='form-control' type='text' onChange={handleChange} placeholder="German"
+                        name='german' value={formData.german} required />
+                    </div>
+                    <div className='input-group w-100'>
+                        <span className="input-group-text">
+                        <img
+                            src="https://flagcdn.com/w40/vn.png"
+                            width="30"
+                            alt="Vietnam" className="flag-icon" />
+                        </span>
+                        <input className='form-control' type='text' onChange={handleChange} placeholder="Vietnamese"
+                        name='vietnamese' value={formData.vietnamese} required />
+                    </div>
 
-            <label>English:</label>
-            <input type='text' onChange={handleChange}
-            name='english' value={formData.english} />
-
-            <label>German:</label>
-            <input type='text' onChange={handleChange}
-            name='german' value={formData.german} />
-
-            <label>Vietnamese:</label>
-            <input type='text' onChange={handleChange}
-            name='vietnamese' value={formData.vietnamese} />
-
-            <button>Update</button>
-        </form>
+                    <button className='btn-fabulous'>Update</button>
+                </form>
+            </div>
+            
+        </div>
     )
 }
 
