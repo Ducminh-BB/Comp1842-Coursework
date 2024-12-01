@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import './Home.css'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import { useNavigate } from 'react-router-dom'
-import { deleteAccount, fetchAllAccounts } from '../../handleAPI/Accounts/accountsAPI'
+import { deleteAccount, fetchAllAccounts, handleUpdateRole } from '../../handleAPI/Accounts/accountsAPI'
 import { getAllTests, handleDeleteTestsByEmail } from '../../handleAPI/Tests/testsAPI'
 import { _formatDate } from '../../formatString/_formatDate'
 import { handleConfirmation } from '../../handleAPI/Vocabs/vocabsAPI'
@@ -13,6 +13,7 @@ import "aos/dist/aos.css"
 
 // counter the number animation
 import CountUp from 'react-countup';
+import Footer from '../../components/Footer/Footer'
 
 const Home = () => {
 
@@ -112,25 +113,27 @@ const Home = () => {
     }, [account])
 
     return (
-        // admin dashboard
+        <main>
+        {
+            // admin dashboard
         (account && account.role === 'admin')
         ?(
             (acc && tests) 
             ? (
-                <div className='statistic-container'>
+                <div>
                 <div className='container'>
                     <div className='row'>
                         <div className='col'>
-                            <div className="card-body text-primary">
+                            <div className="card-body text-primary text-center">
                                 <h2 className="card-title">Total Account</h2>
-                                <p className="card-text">{acc.length}</p>
+                                <p className="card-text fs-4">{acc.length}</p>
                             </div>
                            
                         </div>
                         <div className='col'>
-                            <div className="card-body text-primary">
+                            <div className="card-body text-success text-center">
                                 <h2 className="card-title">Total completed test</h2>
-                                <p className="card-text">{tests.length}</p>
+                                <p className="card-text fs-4">{tests.length}</p>
                             </div>
                             
                         </div>
@@ -140,13 +143,13 @@ const Home = () => {
                 <div className='view-datatable'>
                     <div className='view-accounts'>
                         <div className='header'>
-                            <h1 onClick={() => toggleEnableAccTbl(!enableAccTbl)}>All Accounts</h1>                            
+                            <span onClick={() => toggleEnableAccTbl(!enableAccTbl)}className='fs-1 text-primary fw-bold'>All Account</span>                            
                         </div>
                         {
                             enableAccTbl && (
                                 <table className='table table-bordered'>
                                     <thead>
-                                        <tr>
+                                        <tr className='text-center'>
                                             <th scope='col'></th>
                                             <th scope='col'>Email</th>
                                             <th scope='col'>Role</th>
@@ -158,11 +161,14 @@ const Home = () => {
                                     {
                                         acc && acc.map((a, index) => (
                                             <tr key={index}>
-                                                <td>{index + 1}</td>
+                                                <td className='text-end'>{index + 1}</td>
                                                 <td>{a.email}</td>
                                                 <td>{a.role}</td>
                                                 <td>{(a.verified) ? 'Yes' : 'No'}</td>
-                                                {a.email !== account.email && <td onClick={() => {
+                                                {a.role !== 'admin' && 
+                                                <td className='d-flex flex-wrap justify-content-evenly'>
+                                                    
+                                                    <span onClick={() => {
                                                     if (handleConfirmation('Are you sure to delete this account ?'))
                                                     {                       
                                                         tests.filter((t) => t.user_email === a.email).map((t) => {
@@ -178,7 +184,30 @@ const Home = () => {
                                                         })
                                                     }
                                                         
-                                                }}>Delete</td>}
+                                                }} className='text-danger' style={{cursor: 'pointer'}}>Delete</span>
+                                                    <span onClick={() => {
+                                                    if (handleConfirmation('Are you sure to upgrade the role for this account ?'))
+                                                    {                       
+                                                        try {
+                                                            handleUpdateRole(a.email, 'admin')
+                                                        } catch (error) {
+                                                            alert('Something error preventing to update the role of this account')
+                                                        }
+                                                    }
+                                                        
+                                                }}>Up-role</span>
+                                                <span onClick={() => {
+                                                    if (handleConfirmation('Are you sure to downgrade the role for this account ?'))
+                                                    {                       
+                                                        try {
+                                                            handleUpdateRole(a.email, 'client')
+                                                        } catch (error) {
+                                                            alert('Something error preventing to update the role of this account')
+                                                        }
+                                                    }
+                                                        
+                                                }}>Down-role</span>
+                                                    </td>}
                                             </tr>
                                         ))
                                     }
@@ -191,14 +220,14 @@ const Home = () => {
 
                     <div className='view-tests'>
                     <div className='header'>
-                            <h1 onClick={() => toggleEnableTestsTbl(!enableTestsTbl)}>All Tests</h1>                            
+                            <span className='fs-1 text-success fw-bold' onClick={() => toggleEnableTestsTbl(!enableTestsTbl)}>All Tests</span>                            
                         </div>
                         
                         {
                             enableTestsTbl && (
                                 <table className='table table-bordered'>
                                 <thead>
-                                    <tr>
+                                    <tr className='text-center'>
                                         <th scope='col'></th>
                                         <th scope='col'>Email</th>
                                         <th scope='col'>Score</th>
@@ -210,7 +239,7 @@ const Home = () => {
                                     {
                                         tests && tests.map((t, index) => (
                                             <tr key={index}>
-                                                <td>{index + 1}</td>
+                                                <td className='text-end'>{index + 1}</td>
                                                 <td>{t.user_email}</td>
                                                 <td>{t.score}</td>
                                                 <td>{t.test_type}</td>
@@ -240,7 +269,7 @@ const Home = () => {
             
         )
         :(
-            <main data-aos-easing='ease-in-out' data-aos-duration="600" data-aos-delay="0" className={scrolling ? 'scrolled' : ''}>
+            <div data-aos-easing='ease-in-out' data-aos-duration="600" data-aos-delay="0" className={scrolling ? 'scrolled' : ''}>
                 {/* hero section */}
                 <section className={'hero section dark-background'}>
                     <img className='cover-img' data-aos='fade-in' src='/vocab-wallpaper.jpg' alt='vocab-wallpaper' loading="eager" />
@@ -304,20 +333,24 @@ const Home = () => {
                         </div>
                     </div>
                     
-                    <a href='#' className={`scroll-top d-flex align-items-center justify-content-center text-decoration-none ${scrolling ? 'scroll-active' : ''}`}>
-                        <span className="material-symbols-outlined">
-                            uppercase
-                        </span>
-                    </a>                    
+                                        
                 </section>
-                
-            </main>
+                <Footer />
+            </div>
             
 
 
-        )
+            )
         
-    )
-}
+        }
+        <a href='#' className={`scroll-top d-flex align-items-center justify-content-center text-decoration-none ${scrolling ? 'scroll-active' : ''}`}>
+            <span className="material-symbols-outlined">
+                uppercase
+            </span>
+        </a>
+        
+        </main>
+        
+)}
 
 export default Home

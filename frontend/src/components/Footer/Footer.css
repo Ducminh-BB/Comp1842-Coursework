@@ -2,8 +2,8 @@
     background-color: var(--background-color);
     color: var(--bs-white);
     font-size: 14px;
-    padding: 40px 0;
     position: relative;
+    padding: 20px 0;
 }
 
 .footer .subtitle {

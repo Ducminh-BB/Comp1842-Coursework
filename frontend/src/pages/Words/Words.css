@@ -7,6 +7,10 @@
     gap: 20px;
 }
 
+.actions .delete{
+    color: rgb(224, 93, 41);
+}
+
 .actions .delete:hover {
     cursor: pointer;
     color: rgb(221, 30, 30);
@@ -15,7 +19,6 @@
 
 
 .words-container .search {
-    width: 100%;
     position: relative;
     display: flex;
 }
@@ -26,11 +29,12 @@
     padding: 5px;
     border-radius: 5px;
     outline: none;
-    color: var(--primary);
+    color: var(--bs-primary);
 }
 .words-container .wrap{
+    min-width: 300px;
     width: 30%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}

@@ -17,16 +17,6 @@ export const fetchVocabs = async (dispatch) => {
         })
 }
 
-export const fetchOneVocab = async (vocab) => {
-    try {
-        const res = await axios.get(`${getAPIurl('production')}/vocabs/${vocab._id}`)
-        return res.data
-    } catch (err) {
-        throw new Error()
-    }
-}
-
-
 export const handleDelete = async (vocab, dispatch, token) => {
     
     if (handleConfirmation('Are you sure to delete this row?'))

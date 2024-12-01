@@ -42,23 +42,47 @@ const CreateNewWords = () => {
     }
 
     return (
-        <form className="update-form" onSubmit={handleSubmit}>
-            <h3>Add A Word</h3>
+        <div className='container wrapper'>
+            <div className='form-container'>
+                <h1 className='mb-4 text-center'>Add A Word</h1>
+                <form className="d-flex flex-column align-items-center" onSubmit={handleSubmit}>
+                    <div className='input-group w-100'>
+                        <span className="input-group-text">
+                        <img
+                            src="https://flagcdn.com/gb.svg"
+                            width="30"
+                            alt="United Kingdom" className="flag-icon" />
+                        </span>
+                        <input className='form-control' type='text' onChange={handleChange} placeholder="English"
+                        name='english' value={formData.english} required />
+                    </div>
+                    <div className='input-group w-100'>
+                        <span className="input-group-text">
+                        <img
+                            src="https://flagcdn.com/w40/de.png"
+                            width="30"
+                            alt="Germany" className="flag-icon" />
+                        </span>
+                        <input className='form-control' type='text' onChange={handleChange} placeholder="German"
+                        name='english' value={formData.german} required />
+                    </div>
+                    <div className='input-group w-100'>
+                        <span className="input-group-text">
+                        <img
+                            src="https://flagcdn.com/w40/vn.png"
+                            width="30"
+                            alt="Vietnam" className="flag-icon" />
+                        </span>
+                        <input className='form-control' type='text' onChange={handleChange} placeholder="Vietnamese"
+                        name='english' value={formData.vietnamese} required />
+                    </div>
 
-            <label>English:</label>
-            <input type='text' onChange={handleChange}
-            name='english' value={formData.english} required />
-
-            <label>German:</label>
-            <input type='text' onChange={handleChange}
-            name='german' value={formData.german} required />
-
-            <label>Vietnamese:</label>
-            <input type='text' onChange={handleChange}
-            name='vietnamese' value={formData.vietnamese} required />
-
-            <button>Add</button>
-        </form>
+                    <button className='btn-fabulous'>Add</button>
+                </form>
+            </div>
+            
+        </div>
+        
     )
 }
 

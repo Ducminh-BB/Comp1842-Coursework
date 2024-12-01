@@ -11,7 +11,7 @@ export function _formatVietnameseString(str) {
 }
 
 export function decapitalize(str) {
-    var splitStr = str.toLowerCase().split(' ');
+    var splitStr = str.split(' ');
     for (var i = 0; i < splitStr.length; i++) {        
         splitStr[i] = splitStr[i].charAt(0).toLowerCase() + splitStr[i].substring(1);     
     }

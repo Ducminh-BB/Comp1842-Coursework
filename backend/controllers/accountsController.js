@@ -403,6 +403,29 @@ const changePassword = async (req, res) => {
     }
 }
 
+const updateRole = async (req, res) => {
+    try {
+        const {email, role} = req.body
+
+        const account = await accountsModel.findOne({
+            email: email
+        })
+
+        if (!account)
+        {
+            return res.status(400).json({error: 'Email address is not available'})
+        }
+
+        await accountsModel.findByIdAndUpdate(account._id, {
+            role: role
+        })
+
+        return res.status(200).json({"message": "Updated role successfully"})
+    } catch (err) {
+        return res.status(400).json({error: "Can't update role: "+err})
+    }
+}
+
 const emailVerificationChecker = async (req, res) => {
     try {
         const email = req.params.email
@@ -433,5 +456,6 @@ module.exports = {
     sendOTPVerificationEmail,
     resendOTPVerificationEmail,
     changePassword,
-    emailVerificationChecker
+    emailVerificationChecker,
+    updateRole
 }

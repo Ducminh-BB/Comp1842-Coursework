@@ -44,12 +44,7 @@ const Navbar = ({ dynPathChange }) => {
                         </li>
                         <li className="nav-item mx-2">
                             <Link to='/words' className={(dynPathChange === '/words')?'link-info link-offset-2 link-underline-opacity-25':'nav-link'}>Words</Link>
-                        </li>
-                        {account && account.role === 'admin' &&
-                        <li className="nav-item mx-2">
-                            <Link to='/newword' className={(dynPathChange === '/newword')?'nav-link active':'nav-link'}>Create</Link>
-                        </li>
-                        }
+                        </li>                        
                         {
                             account && 
                             <li className="nav-item mx-2">

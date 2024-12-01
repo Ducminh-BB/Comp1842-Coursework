@@ -47,35 +47,43 @@ const Profile = () => {
   }
 
   return (
-    (account && acc)
+    (account)
     ?(
-      <div className='profile'>
-        <div className="card text-dark bg-light mb-3" style={{maxWidth: "25rem"}}>
-          <div className="card-body">
-            <h5 className="card-title">{acc.name}</h5>
-            <p className="card-text">{acc.email}</p>
+      (acc)
+      ?
+      (
+        <div className='profile'>
+          <div className="card text-dark bg-light mb-3" style={{maxWidth: "25rem"}}>
+            <div className="card-body">
+              <h5 className="card-title">{acc.name}</h5>
+              <p className="card-text">{acc.email}</p>
+              {
+              (account.role === 'admin' && (
+                <div className='developer'>
+                  <h1>For Administrator</h1>
+                  <span className='acc-id'>UserId: {acc._id}</span>      
+                </div>
+              ))
+              }
+            </div>
             {
-            (account.role === 'admin' && (
-              <div className='developer'>
-                <h1>For Administrator</h1>
-                <span className='acc-id'>UserId: {acc._id}</span>      
-              </div>
-            ))
+              // owned account => /profile. otherwise, /profile/{email_account}
+              account && acc && !email && (
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item"><Link to={'/view-tests/'+acc.email} className="card-link">View Test Results</Link></li>
+                  <li className="list-group-item"><Link to='/forgot-password' className='card-link'  >Change Password</Link></li>
+                  <li className="list-group-item"><span onClick={deleteAcc} className="card-link delete">Delete Account</span></li>
+                </ul>
+              )
             }
-          </div>
-          {
-            // owned account => /profile. otherwise, /profile/{email_account}
-            account && acc && !email && (
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item"><Link to={'/view-tests/'+acc.email} className="card-link">View Test Results</Link></li>
-                <li className="list-group-item"><Link to='/forgot-password' className='card-link'  >Change Password</Link></li>
-                <li className="list-group-item"><span onClick={deleteAcc} className="card-link delete">Delete Account</span></li>
-              </ul>
-            )
-          }
-                    
-          </div>
-      </div>
+                      
+            </div>
+        </div>
+      )
+      :(
+        <div>loading...</div>
+      )
+      
     )
     :(
       <div className='err-profile'>

@@ -9,7 +9,7 @@ import FourZeroFour from '../../Error/FourZeroFour'
 import './ViewTestDetails.css'
 import { sliceData } from '../../../hooks/useTableFooter'
 
-const ROWS_PER_PAGE = 4
+const ROWS_PER_PAGE = 10
 const ROWS_PER_PAGE_DETAIL = 6
 
 // test types

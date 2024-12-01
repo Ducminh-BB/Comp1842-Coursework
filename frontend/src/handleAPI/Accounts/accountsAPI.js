@@ -133,6 +133,18 @@ export const useChangePassword = () => {
     return {changePassword, p_error}
 }
 
+export const handleUpdateRole = async (email, role, token) => {
+    await axios.post(`${getAPIurl('production')}/role`, {email, role}, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    .catch(err => {
+        console.log(err)        
+        throw new Error()
+    })
+}
+
 
 
 

@@ -1,0 +1,27 @@
+.wrapper .flag-icon {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.btn-fabulous {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-fabulous:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}

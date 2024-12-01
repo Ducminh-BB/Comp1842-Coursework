@@ -18,7 +18,6 @@ import OtpVerification from './pages/Auth/OTP/OtpVerification';
 import ForgotPassword from './pages/Auth/ForgotPassword/ForgotPassword';
 import ViewTestDetails from './pages/DoTest/view/ViewTestDetails';
 import About from './pages/About/About';
-import Footer from './components/Footer/Footer';
 
 
 function App() {
@@ -53,9 +52,7 @@ function App() {
                 <Route path='/forgot-password' element={<ForgotPassword />} />
                 <Route path='view-tests/:email' element={<ViewTestDetails />} />
 
-            </Routes>
-            
-            {location.pathname === '/' && <Footer />}
+            </Routes>                      
         </div>
     </div>
   );

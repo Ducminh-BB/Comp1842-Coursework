@@ -30,13 +30,18 @@ const accountRouter = (app) => {
 
     app.route('/check-verification/:email')
         .get(accountController.emailVerificationChecker)
-    // password update route
+    
 
     app.route('/sendOTP')
         .post(accountController.sendOTPVerificationEmail)
 
+    // password update route
     app.route('/change-password')
         .post(accountController.changePassword)
+
+    // role-update
+    app.route('/role')
+        .post(requireAuthAdmin, accountController.updateRole)
 }
 
 module.exports = accountRouter

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useVocabsContext } from '../../hooks/useVocabContext'
 import { fetchVocabs, handleDelete } from '../../handleAPI/Vocabs/vocabsAPI'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../../hooks/useAuthContext'
 import './Words.css'
 import useSearch from '../../hooks/useSearch'
@@ -51,6 +51,7 @@ const Words = () => {
     const { vocabs, dispatch } = useVocabsContext()
     const { account } = useAuthContext()
     const { search, query } = useSearch()
+    const navigate = useNavigate()
     
 
     // table footer
@@ -77,16 +78,29 @@ const Words = () => {
     return (
         <div className='words-container'>
 
-            <div className='wrap search'>
-                <input 
-                    type='text'
-                    className='search-box'
-                    placeholder='Search a word...'
-                    onChange={(e) => search(e.target.value)}
-                    value={query}
-                />
+            <div>
+                <div className='wrap search'>
+                    <input 
+                        type='text'
+                        className='search-box'
+                        placeholder='Search a word...'
+                        onChange={(e) => search(e.target.value)}
+                        value={query}
+                    />
+                    
+                </div>
+                {account && account.role === 'admin' && (
+                    <div className='d-inline-flex my-2' style={{cursor: 'pointer'}} onClick={() => navigate('/newword')}>
+                        <span className="material-symbols-outlined me-1">
+                                add_circle
+                        </span>
+                        <span>Add A Word</span>
+                        
+                    </div>
+
+                )}
+
             </div>
-            
 
             <div className='data-table'>
                 <table className='table table-bordered'>

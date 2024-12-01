@@ -10,8 +10,7 @@ import { LeaderboardContextProvider } from './context/LeaderboardContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <VocabsContextProvider>
+  <VocabsContextProvider>
       <AuthContextProvider>
         <LeaderboardContextProvider>
           <BrowserRouter>
@@ -19,8 +18,7 @@ root.render(
           </BrowserRouter>
         </LeaderboardContextProvider>      
       </AuthContextProvider>
-    </VocabsContextProvider>
-  </React.StrictMode>
+  </VocabsContextProvider>
 );
 
 
