@@ -134,7 +134,8 @@ export const useChangePassword = () => {
 }
 
 export const handleUpdateRole = async (email, role, token) => {
-    await axios.post(`${getAPIurl('production')}/role`, {email, role}, {
+    const formData = {email, role}
+    await axios.post(`${getAPIurl('production')}/role`, formData, {
         headers: {
             Authorization: `Bearer ${token}`
         }
