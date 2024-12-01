@@ -27,7 +27,7 @@ const SHUFFLE_VOCABS = 2 // indicates the vocabs need to reshuffle when their le
 
 const getRandomVocab = (vocabs, test) => {
     const keys = Object.keys(vocabs) // get key of vocabs object
-    const vocab = vocabs[keys[ keys.length * Math.random() << 0]] // shorthand of parseInt(keys.length * Math.random(), 0)
+    const vocab = vocabs[keys[ keys.length * Math.random() << 0]] // shorthand of parseInt(keys.length * Math.random(), 0). get random 1 OBJECT
 
     switch (test)
     {
@@ -421,14 +421,14 @@ const DoTest = () => {
     useEffect(() => {
         if (duplVocabs)
         {
+            if (duplVocabs.length === SHUFFLE_VOCABS)
+            {
+                setDuplVocabs(vocabs)
+            }
             if (test)
             {
                 let randVocab = getRandomVocab(duplVocabs, test)
                 vocabRef.current = randVocab
-            }
-            if (duplVocabs.length === SHUFFLE_VOCABS)
-            {
-                setDuplVocabs(vocabs)
             }
         }
         
@@ -501,7 +501,7 @@ const DoTest = () => {
                                             onComplete={() => {
                                                 // restart timer and give new question
                                                 checkAnswerResult()
-                                                return { shouldRepeat: true, delay: 1.8 }
+                                                return { shouldRepeat: true, delay: 1 }
                                             }}
                                             >
                                             {renderTime}
