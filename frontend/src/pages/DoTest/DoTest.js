@@ -110,6 +110,7 @@ const DoTest = () => {
     const testDetail = useRef(null)
 
     const [duplVocabs, setDuplVocabs] = useState([])
+    const [changeQuestionFlag, setChangeQuestionFlag] = useState(0)
 
     useEffect(() => {
 
@@ -199,7 +200,7 @@ const DoTest = () => {
             let randVocab = getRandomVocab(duplVocabs, test)
             vocabRef.current = randVocab
         }
-    }, [test, duplVocabs.length])
+    }, [test, changeQuestionFlag])
 
     useEffect(() => {
 
@@ -350,6 +351,7 @@ const DoTest = () => {
         }
 
         setAnswer('')
+        setChangeQuestionFlag(c => c + 1)
         setTimerKey(k => k + 1)
     }
 
