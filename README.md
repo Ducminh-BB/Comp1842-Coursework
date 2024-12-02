@@ -1,6 +1,6 @@
 # Getting Started with COMP1842 - COURSEWORK
 
-Runs the app in the development mode.\
+Runs the app in the production mode.
 Open [https://vocabulary-app-coursework1842.vercel.app/](https://vocabulary-app-coursework1842.vercel.app/) to access our web app.
 
 ## Learn More
