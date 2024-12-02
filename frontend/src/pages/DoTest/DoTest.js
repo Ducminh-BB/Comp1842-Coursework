@@ -347,17 +347,17 @@ const DoTest = () => {
             case ENG_GER:
                 index = duplVocabs.current.findIndex(vocab => vocab.english === vocabRef.current)
                 correct_ans = duplVocabs.current[index].german                
-                checkAnswer(answer, correct_ans)
+                
                 break
             case GER_ENG:
                 index = duplVocabs.current.findIndex(vocab => vocab.german === vocabRef.current)
                 correct_ans = duplVocabs.current[index].english
-                checkAnswer(answer, correct_ans)
+                
                 break
             case VI_ENG:
                 index = duplVocabs.current.findIndex(vocab => vocab.vietnamese === vocabRef.current)
                 correct_ans = duplVocabs.current[index].english
-                checkAnswer(answer, correct_ans)
+                
                 break
             default:
                 break
@@ -369,6 +369,8 @@ const DoTest = () => {
             ans: answer,
             test: testDetail.current._id
         }
+        
+        checkAnswer(answer, correct_ans)
         
         // push tsDetail to list
         setTestDetailList(oldTestDetail => [...oldTestDetail, tsDetail])
