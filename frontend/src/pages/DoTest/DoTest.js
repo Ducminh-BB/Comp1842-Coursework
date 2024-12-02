@@ -23,8 +23,9 @@ const MAX_ATTEMPT = 5
 const CORRECT = 'Correct'
 const INCORRECT = 'Incorrect'
 const TIME_OUT = 'Timed Out'
-const SHUFFLE_VOCABS = 5 // indicates the vocabs need to reshuffle when their length is remaining X times. Min is 5
 
+// indicates the vocabs need to reshuffle when their length is remaining X times. Min is 5
+const SHUFFLE_VOCABS = 5 
 const getRandomVocab = (vocabs, test) => {
     const keys = Object.keys(vocabs) // get key of vocabs object
     const vocab = vocabs[keys[ keys.length * Math.random() << 0]] // shorthand of parseInt(keys.length * Math.random(), 0). get random 1 OBJECT
@@ -40,6 +41,17 @@ const getRandomVocab = (vocabs, test) => {
         default:
             return null
     }
+}
+
+const getRandomEndingCaption = () => {
+    const IMPRESSIVE = 'Impressive...'
+    const BAD = 'Better luck next time!'
+    const WHY = 'WHY! DO IT HARDER! HRRRRRHHH'
+
+    const arr = [IMPRESSIVE, BAD, WHY]
+
+    const cap = arr[arr.length * Math.random() << 0]
+    return cap
 }
 
 
@@ -113,8 +125,9 @@ const DoTest = () => {
     const streaksRef = useRef(0)
     const testDetail = useRef(null)
 
-    const [duplVocabs, setDuplVocabs] = useState([])
     const [changeQuestionFlag, setChangeQuestionFlag] = useState(0)
+
+    const duplVocabs = useRef();
 
     useEffect(() => {
 
@@ -131,11 +144,16 @@ const DoTest = () => {
     }, [dispatch, ldDispatch])
 
     useEffect(() => {
-        if (vocabs || (duplVocabs && duplVocabs.length <= SHUFFLE_VOCABS))
-            setDuplVocabs(vocabs)
+
+        // initial set
+
+        if (vocabs)
+        {
+            duplVocabs.current = vocabs
+        }
 
         // eslint-disable-next-line
-    }, [vocabs, changeQuestionFlag])
+    }, [vocabs])
 
     const pushDataToLd = async () => {
         // check the user existing in db
@@ -242,7 +260,7 @@ const DoTest = () => {
         setMaxTime(TEST_MAX_TIME)
         setStreaks(0)
         setPoints(0)
-        setDuplVocabs(vocabs)
+        duplVocabs.current.current = vocabs
         setIsAnimatedEndingScreen(false)
         setIsAnimatedOverlay(false)
         scaleGainAttemptsTime(1)
@@ -327,18 +345,18 @@ const DoTest = () => {
 
        switch (test) {
             case ENG_GER:
-                index = duplVocabs.findIndex(vocab => vocab.english === vocabRef.current)
-                correct_ans = duplVocabs[index].german                
+                index = duplVocabs.current.findIndex(vocab => vocab.english === vocabRef.current)
+                correct_ans = duplVocabs.current[index].german                
                 checkAnswer(answer, correct_ans)
                 break
             case GER_ENG:
-                index = duplVocabs.findIndex(vocab => vocab.german === vocabRef.current)
-                correct_ans = duplVocabs[index].english
+                index = duplVocabs.current.findIndex(vocab => vocab.german === vocabRef.current)
+                correct_ans = duplVocabs.current[index].english
                 checkAnswer(answer, correct_ans)
                 break
             case VI_ENG:
-                index = duplVocabs.findIndex(vocab => vocab.vietnamese === vocabRef.current)
-                correct_ans = duplVocabs[index].english
+                index = duplVocabs.current.findIndex(vocab => vocab.vietnamese === vocabRef.current)
+                correct_ans = duplVocabs.current[index].english
                 checkAnswer(answer, correct_ans)
                 break
             default:
@@ -356,7 +374,8 @@ const DoTest = () => {
         setTestDetailList(oldTestDetail => [...oldTestDetail, tsDetail])
 
         if (index !== -1) {
-            duplVocabs.splice(index, 1);
+            const newArr = duplVocabs.current.filter((_, i) => i !== index);
+            duplVocabs.current = newArr
         }
         
         // toggle overlay animation
@@ -375,6 +394,12 @@ const DoTest = () => {
         e.preventDefault()
 
         await checkAnswerResult()
+        // reset
+        
+        if (duplVocabs.current && duplVocabs.current.length === SHUFFLE_VOCABS){
+            
+            duplVocabs.current = vocabs         
+        }
 
     }
 
@@ -442,12 +467,13 @@ const DoTest = () => {
     }, [testStarted])
 
     useEffect(() => {
-        console.log(duplVocabs.length)
-        if (duplVocabs && test)
+
+        if (duplVocabs.current && test)
         {
-            vocabRef.current = getRandomVocab(duplVocabs, test)
+            vocabRef.current = getRandomVocab(duplVocabs.current, test)
             setVocab(vocabRef.current)
         }
+
         // eslint-disable-next-line
     }, [test, changeQuestionFlag])
 
@@ -698,14 +724,17 @@ const DoTest = () => {
                                         </div>
                                     )
                                     :(
-                                        <div className='container p-3 aos-init aos-animate' style={{backgroundColor: 'var(--bs-gray-200)', maxWidth: '400px', width: '50vw', userSelect: 'none'}}>
+                                        <div className='container p-3' style={{backgroundColor: 'var(--bs-gray-200)', maxWidth: '400px', width: '50vw', userSelect: 'none'}}>
                                             <h1 className='mb-4 text-center'>Test Over</h1>
                                             <div className='d-flex justify-content-around align-items-center'>
                                                 <span  style={{fontSize: "2vw"}}>Score: {points}</span>
                                                 <span className='d-inline-flex align-items-center'>
                                                     <img width="48" height="48" src="https://img.icons8.com/doodle/48/fire-element--v1.png" alt="fire-element--v1"/> 
-                                                    <span style={{fontSize: "3vw"}}>{streaks}</span>
+                                                    <span style={{fontSize: "3vw"}}>{streaksRef.current}</span>
                                                 </span>
+                                            </div>
+                                            <div className='fs-2 text-center mt-2'>
+                                                {getRandomEndingCaption()}
                                             </div>
 
                                             <div className='d-flex justify-content-around' style={{margin: '8vh 0'}}>
