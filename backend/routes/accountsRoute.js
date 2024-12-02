@@ -37,11 +37,11 @@ const accountRouter = (app) => {
 
     // password update route
     app.route('/change-password')
-        .post(accountController.changePassword)
+        .put(accountController.changePassword)
 
     // role-update
     app.route('/role')
-        .post(requireAuthAdmin, accountController.updateRole)
+        .put(requireAuthAdmin, accountController.updateRole)
 }
 
 module.exports = accountRouter
