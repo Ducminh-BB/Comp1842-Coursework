@@ -1,5 +1,4 @@
 import axios from "axios"
-import { handleConfirmation } from "../Vocabs/vocabsAPI"
 import { getAPIurl } from "../getAPIurl"
 
 export const fetchLeaderboard = async (dispatch, token) => {
@@ -60,18 +59,14 @@ export const handleUpdateField = async (email, dispatch, formData, token) => {
 }
 
 export const handleDeleteField = async (email, test_type, dispatch, token) => {
-    if (handleConfirmation('Are you sure to delete this user record?')){
         await axios.delete(`${getAPIurl('production')}/leaderboard/${test_type}/${email}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         })
-            .then(res => 
-                dispatch({type: 'DELETE_FIELD', payload: {email, test_type}})
-            )
-            .catch(err => {
-                throw new Error()
-            })
-    }
+        .catch(err => {
+            throw new Error()
+        })
+    
 }
 

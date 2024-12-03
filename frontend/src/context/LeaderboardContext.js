@@ -7,10 +7,6 @@ const leaderboardReducer = (state, action) => {
             return {
                 ld: action.payload
             }
-        case 'DELETE_FIELD':
-            return {
-                ld: state.ld.filter((l) => (l.test_type !== action.payload.test_type && l.user_email !== action.payload.email))
-            }
         case 'UPDATE_FIELD':
             return {               
                 ld: state.ld.map((l) => 

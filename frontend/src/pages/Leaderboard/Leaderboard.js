@@ -4,6 +4,7 @@ import { useAuthContext } from '../../hooks/useAuthContext'
 import './Leaderboard.css'
 import { useLeaderboardContext } from '../../hooks/useLeaderboardContext'
 import { fetchLeaderboard, handleDeleteField } from '../../handleAPI/Leaderboard/LeaderboardAPI'
+import { handleConfirmation } from '../../handleAPI/Vocabs/vocabsAPI'
 
 
 const ENG_GER = 'eng-ger'
@@ -15,21 +16,34 @@ const Leaderboard = () => {
     const { ld, ldDispatch } = useLeaderboardContext()
     const { account } = useAuthContext()
     const [test, setTest] = useState(ENG_GER)
+    const [leaderboard, setLeaderboard] = useState([])
 
     useEffect(() => {
         
         try {
             fetchLeaderboard(ldDispatch, account.token)
+            
         }
         catch (err)
         {
             console.error("can't fatch data")
         }
 
+        // eslint-disable-next-line
     }, [ldDispatch])
+
+    useEffect(() => {
+        if (ld)
+            setLeaderboard(ld)
+    }, [ld])
     
-    const deleteOne = async (id) => {
-        await handleDeleteField(id, ldDispatch, account.token)
+    const deleteOne = async (email, test_type) => {
+        try {
+            await handleDeleteField(email, test_type, ldDispatch, account.token)
+        } catch (error) {
+            throw new Error()
+        }
+        
         
     }
 
@@ -77,7 +91,7 @@ const Leaderboard = () => {
             </div>            
             <div className='top-three-rank'>
                 {
-                    ld && ld.filter(l => l.highScore !== 0 && l.test_type === test).slice(0, 3).map((l, index) => (
+                    leaderboard && leaderboard.filter(l => l.highScore !== 0 && l.test_type === test).slice(0, 3).map((l, index) => (
 
                         <div className={`top-item top-${index + 1}`} key={index}>
                             <div className={`banner-${index + 1}`}>
@@ -100,7 +114,7 @@ const Leaderboard = () => {
                     ))
                 }
                 {
-                    ld && ld.filter(l => l.highScore !== 0 && l.test_type === test).length <= 0 &&
+                    leaderboard && leaderboard.filter(l => l.highScore !== 0 && l.test_type === test).length <= 0 &&
                     (
                         <div className='fs-4 fw-bold'>
                             No Data
@@ -124,7 +138,7 @@ const Leaderboard = () => {
                   </thead>
                   <tbody>
                       {
-                        ld && ld.filter(l => l.highScore !== 0 && l.test_type === test).slice(0, 11).map((l, index) => (
+                        leaderboard && leaderboard.filter(l => l.highScore !== 0 && l.test_type === test).slice(0, 11).map((l, index) => (
                           <tr key={index} >
                             <td className={(l.user_email === account.email) ? 'highlight' : undefined}>{index + 1}</td>
                             <td><Link to={(l.user_email === account.email) ? '/profile' : '/profile/'+l.user_email}>{l.user_email}</Link></td>
@@ -133,8 +147,17 @@ const Leaderboard = () => {
                             {
                                 (account && account.role === 'admin') && (
                                     <td><span onClick={() => {
-                                        deleteOne(l._id)
-                                    }}>Delete</span></td>
+                                        if (handleConfirmation('Are you sure to delete this user record?')){
+                                            try {
+                                                deleteOne(l.user_email, l.test_type)
+                                                setLeaderboard(leaderboard.filter(ld => ld._id !== l._id))
+                                            } catch (error) {
+                                                console.log(error)
+                                            }
+                                            
+                                        }
+                                        
+                                    }} style={{cursor: 'pointer'}}>Delete</span></td>
                                 )
                             }
                           </tr>

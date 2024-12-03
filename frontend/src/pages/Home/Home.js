@@ -166,7 +166,7 @@ const Home = () => {
                                                 <td>{a.role}</td>
                                                 <td>{(a.verified) ? 'Yes' : 'No'}</td>
                                                 {a.role !== 'admin' && 
-                                                <td className='d-flex flex-wrap justify-content-evenly'>
+                                                <td className='d-flex flex-wrap justify-content-evenly' style={{cursor: 'pointer'}}>
                                                     
                                                     <span onClick={() => {
                                                     if (handleConfirmation('Are you sure to delete this account ?'))
@@ -184,7 +184,7 @@ const Home = () => {
                                                         })
                                                     }
                                                         
-                                                }} className='text-danger' style={{cursor: 'pointer'}}>Delete</span>
+                                                }} className='text-danger'>Delete</span>
                                                     <span onClick={() => {
                                                     if (handleConfirmation('Are you sure to upgrade the role for this account ?'))
                                                     {                       
