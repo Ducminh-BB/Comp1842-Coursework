@@ -189,7 +189,9 @@ const verifyOTP = async (req, res) => {
 const viewAllAccounts = async (req, res) => {
     try
     {
-        let accounts = await accountsModel.find({}).select('-password')
+        let accounts = await accountsModel.find({})
+        .select('-password')
+        .sort({role: 1})
 
         res.status(200).json(accounts)
     }
