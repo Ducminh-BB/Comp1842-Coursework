@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- help the page be attractive -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Product App</title>
+</head>
+<body>
+    <div class="nav-bar"></div>
+
+    <!-- we define the id: app to apply Vue in our project -->
+    <div id="app">
+        <div class="cart">
+            <p>Cart({{ cart.length }})</p>
+        </div>
+        <product :premium="premium" @add-to-cart="updateCart"></product>
+        
+    </div>
+
+    <!-- development version, includes helpful console warnings -->
+    <!-- import the VueJs script to use Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!-- The js code to implement VueJs -->
+    <script src="main.js"></script>
+</body>
+</html>

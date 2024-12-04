@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="console.js"></script>
+  <script src="hello.js"></script>
+</head>
+<body>
+  <script>
+    function welcome(){
+      let text = document.getElementById("input").value;
+      document.getElementById("output").innerHTML = text;
+    }
+  </script>
+
+  <input type="text" name="" id="input">
+  <button onclick="return welcome();">OK</button>
+  <h3 id="output"></h3>
+
+</body>
+</html>

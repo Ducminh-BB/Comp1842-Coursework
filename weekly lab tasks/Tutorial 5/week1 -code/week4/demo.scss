@@ -1,0 +1,12 @@
+$my-blue: rgb(74, 253, 14);
+$my-yellow: rgb(0, 4, 255);
+
+h1 {
+    color: $my-blue;
+    background: $my-yellow;
+}
+
+p {
+    color: $my-yellow;
+    background: $my-blue;
+}

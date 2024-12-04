@@ -1,0 +1,23 @@
+body
+{
+  background-color: rgb(143, 202, 209);
+}
+
+h1#hello
+{
+  color: rgb(47, 177, 33);
+  background-color: cornflowerblue;
+}
+
+h1#love
+{
+  color: rgb(252, 100, 105);
+}
+
+.web
+{
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-style: italic;
+  text-decoration-line: underline;
+  text-transform: uppercase;
+}

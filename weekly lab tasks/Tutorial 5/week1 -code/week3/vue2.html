@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue2 demo</title>
+    <!-- 
+        Attach Vue2 CDN link to head section
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="vue" class="demo">
+        {{ welcome }}
+    </div>
+
+    <div id="products">
+        <ul v-for="product in products">
+            <li> {{product}} </li>
+        </ul>
+    </div>
+
+    <script>
+        var demo = new Vue({
+            el: "#vue",
+            data: {
+                welcome: "Hello"
+            }
+        })
+
+        var test = new Vue({
+            el: "#products",
+            data: {
+                products: [
+                    'laptop', 'mobile', 'tablet'
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
